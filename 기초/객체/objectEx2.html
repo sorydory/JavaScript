@@ -1,0 +1,25 @@
+<script>
+/*
+        Students생성자함수
+        name, age, score1, score2
+        total()메소드
+        =>score1 + score2 더한값을 리턴
+        student1 객체 생성("green",22,85,75)
+        student2 객체 생성("blue",25,80,60)
+        */
+       function Students(name, age, score1, score2){
+        this.name = name;
+        this.age = age;
+        this.score1 = score1;
+        this.score2 = score2;
+        this.total() = function(){
+            return this.score1 + this.score2;
+        }
+       }
+       let student1 = new Student("green",22,85,75);
+       let student2 = new Student("blue",25,80,60);
+       let result3 = student1.total();
+       let result4 = student2.total();
+       console.log(`student1의 점수합계는 ${result3}이고 student2의 점수 합계는 ${result4}이다.`)
+       
+    </script>

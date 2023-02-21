@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+      //1~100까지 숫자를 출력
+      //3과 5로 나누어 떨어지는 수는 숫자 대신 FizzBuzz출력
+      //3으로 나누어 떨어지면 숫자 대신 Fizz출력
+      //5로 나누어 떨어지면 숫자 대신 Buzz를 출력
+      for(let i=1; i<=100; i++){
+        if(i % 5 == 0 && i % 3 ==0){
+            console.log("FizzBuzz");
+        }else if(i%5==0){
+            console.log("Buzz");
+        }else if(i%3==0){
+            console.log("Fizz");
+        }else{
+        console.log(i);
+      }
+    }
+    </script>
+</body>
+</html>

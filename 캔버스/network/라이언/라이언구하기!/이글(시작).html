@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+body{
+    background-color: white;
+    width: 1000;
+    height: 1000;
+}
+
+.button1 
+{ 
+    transition: font-size 0.1s;
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+            border: 2px solid orange;
+            width: 200px;
+            font-size: 20px;
+            height: 50px;
+            position: absolute;
+            top: 900px;
+            left: 0px;
+            font-variant: small-caps;
+}
+.button2 
+{ 
+    transition: font-size 0.1s;
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+            border: 2px solid orange;
+            width: 200px;
+            font-size: 20px;
+            height: 50px;
+            position: absolute;
+            top: 800px;
+            left: 0px;
+            font-variant: small-caps;
+}    
+</style>
+</head>
+<body>
+    <div id="aa">
+    <label> 
+        <input type="radio" name="map" value="1">
+        화장실 맵 <img src="1.png"> 
+        </label> <br>
+    <label>
+        <input type="radio" name="map" value="2" >
+        우주 맵 <img src="2.png">
+    </label> <br>
+</div>
+<hr>
+    <div id="bb">
+    <label>
+        <input type="radio" name="lion" value="11">
+         기본 <img src="11.png">
+    </label> <br>
+    <label>
+        <input type="radio" name="lion" value="12">
+        수영장 파티 라이언 <img src="12.png">
+    </label> <br> 
+    <label>
+     <input type="radio" name="lion" value="13">
+     먹선우 <img src="13.png">
+    </label>
+</div>
+    <input type="button" class="button1" onclick='location.href="라이언구하기.html"' value="게임시작">
+      <input type="button" class="button2" value="확인" onclick="abc()">
+   
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   <script>
+       function abc() {
+
+       
+      var map = $('input:radio[name=map]:checked').val();
+      var lion = $('input:radio[name=lion]:checked').val();
+            // var map = document.getElementByName("map").value;
+            sessionStorage.setItem("0", map);
+            // var lion = document.getElementByName("lion").value;
+            sessionStorage.setItem("1", lion);
+       } 
+   </script>
+</body>
+</html>

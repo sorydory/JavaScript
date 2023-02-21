@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+           /*
+           Accumulator 생성자 함수 만들기
+           startNum 프로퍼티
+           read() 메소드
+           startNum + 입력값 더해서 리턴
+           */
+        function Accumulator(startNum){
+            this.startNum = startNum;
+            this.read = function(){
+                this.startNum = this.startNum + Number(prompt("숫자를 입력하세요"));
+                return this.startNum;
+            }
+        }
+        let acc = new Accumulator(10);
+        console.log(acc.startNum);
+        console.log(acc.read());
+    </script>
+</body>
+</html>

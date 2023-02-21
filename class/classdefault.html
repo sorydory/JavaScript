@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //클래스와 객체
+        //클래스는 ?? 객체를 만들기 위한 도구, 템플릿
+        class Car {
+            constructor (color,speed){
+                this.color = color;
+                this.wheels = 4;
+                this.speed = speed;
+            }
+            drive() {
+                console.log(`차가 ${this.speed}로 달립니다.`)
+            }
+        }
+        const car1 = {
+            color: "green",
+            wheels: 4,
+        }
+        const car2 = {
+            color: "red",
+            wheels: 4
+        }
+        const car3 = new Car("blue", 00); 
+        console.log(car3);
+        car3.drive();
+
+        //static 키워드
+        //클래스 이름을 사용해서 호출
+        //객체에 상관없이 사용하는 메소드
+        class Article{
+            static publisher = "Green Coding";
+            constructor(articleNumber){
+                this.articleNumber = articleNumber;
+            }
+            static printPublisher(){
+                console.log("나는또리다");
+            }
+        }
+        const article1 = new Article(10);
+        console.log(article1);
+        Article.printPublisher();
+        console.log(Article.publisher);
+        console.log(article1.publisher);
+
+        //오버라이딩
+        //상속 관계에 있는 부모 클래스에서 이미 정의된 메소드를 자식 클래스에서 메소드로 다시 재정의 하는 것
+        //메소드로 다시 재정의 하는 것
+        class Shape{
+            constructor(width,height,color){
+                this.width=width;
+                this.height=height;
+                this.color=color;
+            }
+            draw(){
+                console.log(`${this.color}로 그립니다푸하하.`)
+            }
+            getArea(){
+                return this.width*this.height;
+            }
+        }
+        class Rectangle extends Shape{
+            //생성자 오버라이딩
+            constructor(width,height,color,name){
+                //부모 생성자 호출
+                super(width,height,color);
+                this.name=name;
+            }
+            //오버라이딩
+            draw(){
+                //super를 이용하여 부모요소 메소드를 호출!~
+                super.draw();
+                console.log("사각형을 그립니다.");
+            }
+        }
+        const ractangle = new Rectangle(20,20,'yellow');
+        console.log(ractangle);
+        ractangle.draw(); 
+
+        //instanceof a instanceof b     a객체가 b클래스를 이용해서 만들었는지 체크
+        console.log(ractangle instanceof Rectangle);
+        console.log(ractangle instanceof Shape);
+        console.log(ractangle instanceof Car);
+        
+    </script>
+</body>
+</html>
+

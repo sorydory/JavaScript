@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            //this는 현재 객체를 나타냄
+            let user = {
+                name: "green",
+                age:30
+            }
+            user.sayHi =function(){
+                console.log(this.name);
+            }
+            console.log(user);
+            user.sayHi();
+            let user2 = {
+                name: "blue",
+                age: 22,
+                sayHi: function(){
+                    console.log(this.name);
+                }
+            }
+            user2.sayHi();
+            function sayHi(){
+                console.log(this);
+            }
+            sayHi();
+            //this는 .앞에 있는 객체를 참조한다.
+            
+            /*
+            read()에선 프롬프트 창을 띄우고 더할 값 두 개를 입력받습니다.
+            입력바은 값은 객체의 프로퍼티에 저장합니다.
+            sum()은 저장된 두 값의 합을 반환합니다.
+            mul()은 저장된 두 값의 곱을 반환합니다.
+            생성자 함수를 만들어서 num1,num2에 두 개의 숫자를 담아줌
+            function Calculators(num1,num2)
+            {
+                this.num1 = num1;
+                this.num2 = num2;
+                sum(){
+
+                }
+                mul(){
+
+                }
+            }
+            let calculators = new Calculators(10,20);
+            let result1 = calculator.sum();
+            */
+           function Calculator(num1,num2){
+            this.num1=num1;
+            this.num2-num2;
+            this.sum=function(){
+                return this.num1+this.num2;
+            }
+            this.mul=function(){
+                return this.num1*this.num2;
+            }
+           }
+           let calculator = new Calculator(10,20);
+           let result1 = calculator.sum();
+           let result2 = calculator.mul();
+           console.log(`숫자 두개의 합은 ${result1}이다.`);
+           console.log(`숫자 두 개의 곱은 ${result2}이다.`);
+           let calculator2 = {
+            num1:10,
+            num2: 30,
+            sum(){
+                return this.num1 + this.num2;
+            },
+            mul(){
+                return this.num1 * this.num2;
+            }
+           }
+           console.log(calculator2.sum());
+
+        </script>
+    </body>
+    </html>
+</body>
+</html>

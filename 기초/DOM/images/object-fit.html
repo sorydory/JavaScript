@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width:400px; padding:10px;
+            height: 300px;
+            border:1px solid #333;
+        }
+        img {
+            width: 400px;
+            height: 300px;
+        }
+        .img01 { object-fit: fill;}
+        .img02 { object-fit: contain;}
+        .img03 { object-fit: cover;}
+        .img04 { object-fit: none;}
+        .img05 { object-fit: scale-down;}
+    </style>
+</head>
+<body>
+    <h2>object-fit 적용안함</h2>
+    <div><img src="./test.jpg" alt=""></div>
+    <h2>fill</h2>
+    <div><img src="./test.jpg" alt="" class="img01"></div>
+    <h2>contain</h2>
+    <div><img src="./test.jpg" alt="" class="img02"></div>
+    <h2>cover</h2>
+    <div><img src="./test.jpg" alt="" class="img03"></div>
+    <h2>none</h2>
+    <div><img src="./test.jpg" alt="" class="img04"></div>
+    <h2>scale-down</h2>
+    <div><img src="./test.jpg" alt="" class="img05"></div>
+</body>
+</html>

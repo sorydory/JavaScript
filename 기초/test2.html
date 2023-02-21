@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num2=prompt("숫자를 입력하세요");
+
+        if(isNaN(Number(num2)) || !num2) {
+            alert("숫자를 입력하세요")
+        } else if(num2%2==1) {
+            alert("홀수 입니다.");
+        } else {
+            alert("짝수 입니다.");
+        }
+        /*
+        if(num2%2==1){
+            alert("홀수입니다.")
+        } else {
+            alert("짝수입니다.")
+        }
+        */
+        alert(num2%2==1 ? "홀수입니다." : "짝수입니다.")
+
+        /*아이디를 입력받은 후
+        아이디 값이 admin이면 비밀번호를 입력받으세요
+        비밀번호가 1234면 환영합니다.
+        틀리면 인증에 실패했습니다.
+        */
+    </script>
+</body>
+</html>

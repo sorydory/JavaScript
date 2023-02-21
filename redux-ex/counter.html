@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="number">0</h1>
+    <button id="increment">+</button>
+    <button id="decrement">-</button>
+    <script>
+        //초기값 설정
+        const initialState = {
+            number:0
+        }
+        function reducer(state=initialState,action){
+            switch(action.type){
+                case "INCREMENT":
+                    return{
+                        number:state.number+1 + 아까 여기에 뭐 쓰셨는데 ..
+                    };
+                case "DECREMENT":
+                    return{
+                        number:state.number-1
+                    };
+                default:
+                    return state;
+            };
+        }
+        //액션 객체를 만들어주는 액션 생성함수
+        //객체를 리턴할 때 return키워드 생략, {}생략시 ()로 감싸준다.
+        //{return {type:"IMCREMENT"}}
+        const increment = (add) => ({ type: "INCREMENT", add:add })
+        const decrement = () => ({ type: "DECREMENT"})
+        const store = Redux.createStore(reducer, window);
+        //상태가 변경될 때 마다 호출시킬 함수
+        const numberEle = document.querySelector("#number");
+        const btnIncrement = document.querySelector("#increment");
+        const btnDecrement = document.querySelector("#decrement");
+        const render = () => {
+            numberEle.innerHTML = store.getState().number;
+            console.log("render호출됨");
+        }
+        //스토어에 구독을 하고 상태변화가 있으면 render함수를 호출
+        store.subscribe(render);
+        btnIncrement.addEventListener("click",()=>{
+            store.dispatch(increment(5));
+        })
+        btnDecrement.addEventListener("click",()=>{
+            store.dispatch(decrement());
+        })
+    </script>
+</body>
+</html>

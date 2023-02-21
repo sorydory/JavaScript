@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>
+            A음료수:500원 <br/>
+            B음료수:700원 <br/>
+            C음료수:1000원
+        </div>
+        <button onclick="input100()">100</button>
+        <button onclick="input500()">500</button>
+        <button onclick="input1000()">1000</button>
+        <p id="money"></p>
+        <p id=" select"></p>
+    </div>
+    <script>
+        //버튼클릭하면 money 해당 버튼의 금액을 더해줌
+        //금액은 id="money"인 p요소 출력
+        //금액에 따라 살 수 있는 음료수 종류는 id="select"인 p요소에 출력
+        //*A음료수, B음료수*
+        let money = 0;
+        
+        function input100(){
+            console.log("100을 클릭했습니다.");
+            money = money + 100;
+            document.querySelector("#money").innerHTML = money;
+            //money가 500이상 일 때 A음료수
+            //money가 700이상 일 때 A음료수, B음료수
+            //money가 1000이상 일 때 A음료수, B음료수, C음료수
+            if(money >= 1000){
+                document.querySelector("#select").innerHTML = "A음료수, B음료수, C음료수";
+            } else if(money >= 700) {
+                document.querySelector("#select").innerHTML = "A음료수, B음료수";
+            } else if(money >= 500) {
+                document.querySelector("#select").innerHTML = "A음료수";
+            } else {
+                document.querySelector("#select").innerHTML = "못사요";
+            }
+        }
+        function input500(){
+            console.log("500을 클릭했습니다.");
+            money = money + 500;
+            document.querySelector("#money").innerHTML = money;
+         }
+         
+        function input1000(){
+            console.log("1000을 클릭했습니다.");
+            money = money + 1000;
+            document.querySelector("#money").innerHTML = money;
+        }
+        function selectCh(){
+            if(money >=1000)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //에러 핸들링
+        //try블럭 안에서 에러가 발생하면 catch에서 에러를 처리하기 때문에
+        //스크립트는 죽지않음
+        let json = '{"age":30}';
+        try{
+            //json타입을 object로 변환
+            let user = JSON.parse(json);
+            if(!user.name){
+                throw new SyntaxError("이름이 없음");
+            }
+        }
+        //에러가 발생하지 않으면 무시됨
+        catch(e){
+            console.log(e.message);
+        }finally{
+            console.log("마지막실행");
+        }
+        console.log('실행')
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //"3+4" => 7 문자열 입력 시 계산된 결과를 리턴
+        function myFunc(myStr){
+            let a = eval(myStr);
+        }
+        function myFunc(myStr){
+            let a = 0;
+            //myStr=myStr.trim();
+            //1. 덧셈인지 뺄셈인지 구분
+            if(myStr.indexOf("+")>0){
+                console.log("+있습니다.");
+                let arr = myStr.split("+");
+                console.log(arr);
+                a=Number(arr[0])+Number(arr[1]);
+            }
+            if(myStr.indexOf("-")>0){
+                console.log("-있습니다.");
+                let arr= myStr.split("-");
+                console.log(arr);
+                a=arr[0]-arr[1];
+            }
+            return a;
+        }
+        let result = myFunc("10+7");
+        console.log(result);
+    </script>
+</body>
+</html>

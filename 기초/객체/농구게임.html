@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./농구게임.css">
+</head>
+<body>
+    <div id="wrap">
+        <div id = top>
+            <div>
+                <div>남은 슛 횟수</div>
+                <div id="num"></div>
+            </div>
+            <div id = score>
+                <div>
+                    <div>컴퓨터</div>
+                    <div id="com_num"></div>
+                </div>
+                <div>
+                    <div>사람</div>
+                    <div id="user_num"></div>
+                </div>
+            </div>
+            <div id="inform"></div>
+        </div>
+        <div id = bottom>
+            <div id="com_shoot">
+                <div>컴퓨터</div>
+                <button id="comsh" onclick="comsh()">슛하기</button>
+            </div>
+            <div id="user_shoot">
+                <div>사용자</div>
+                <button id="user2" onclick="shoot2()">2점슛</button><br>
+                <button id="user3" onclick="shoot3()">3점슛</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        /*
+        농구게임 만들기
+        1. 컴퓨터 먼저시작
+        2. 슛 횟수 각각 15번
+        3. 컴퓨터가 먼저 슛하기를 하면 3점슛과 2점슛 중 
+            50%의 확률로 랜덤하게 던질 수 있다.
+            3점슛은 30% 확률로 성공, 2점슛은 50% 확률로 성공
+            결과는 텍스트로 표시
+        4. 성공시 사람의 점수를 더해준다.
+        5. 컴퓨터 순서가 끝나면 사용자의 순서가 된다.
+        6. 사용자는 2점슛 3점슛을 선택할 수 있다.
+            2점슛은 50% 확률로 성공
+            3점슛은 30% 확률로 성공
+        7. 결과는 텍스트로 표시
+        8. 성공 시 사람의 점수를 더해준다.
+        9. 사용자 턴이 끝나면 남은 슛 횟수가 1씩 줄어든다.
+        10. 남은 슛 횟수가 0이 되면 누가 이겼는지 결과를 텍스트로 나타낸다.
+            <button disabled="false"></button>
+
+            document.querySelector("#comsh").disabled=true
+        */
+        let num = 15;
+        let com_num = 0;
+        let user_num = 0;
+        document.querySelector('#num').innerHTML=num;
+        document.querySelector('#com_num').innerHTML=com_num;
+        document.querySelector('#user_num').innerHTML=user_num;
+        
+    </script>
+</body>
+</html>

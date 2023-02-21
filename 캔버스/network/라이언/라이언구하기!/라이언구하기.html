@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameWorld</title>
+    <style>    
+      body { 
+        background-image: url("enemy.PNG");
+    
+    width: 1000;
+    height: 1000;
+            background-color:orange;
+            margin: 0px;
+        }
+        
+        canvas {  
+            background-color: #787FFF;
+        }
+        
+        .input {
+            transition: font-size 0.1s;
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+            border: 2px solid orange;
+            width: 200px;
+            font-size: 20px;
+            height: 50px;
+            position: absolute;
+            top: 150px;
+            left: 800px;
+            font-variant: small-caps;
+        }
+        
+        .input:hover {
+            font-size: 100%;
+        }
+        .input2 {
+            transition: font-size 0.1s;
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+            border: 2px solid orange;
+            width: 200px;
+            font-size: 20px;
+            height: 50px;
+            position: absolute;
+            top: 300px;
+            left: 800px;
+            font-variant: small-caps;
+        }
+        
+        .input2:hover {
+            font-size: 100%;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <canvas id = "canvas" style="background-color:white;"></canvas>
+    <br>
+    <input type="button" id="btn" value="쉬움" class="input" onclick="drawCountdown()"/> 
+    <input type="button" id="btn1" value="어려움" class="input2" onclick="drawCountdown1()"/>
+    <Script>
+        var width = 2000, height = 800, range = 20;  //캔버스 범위 
+        var key = [];  // 키값  변수
+        var startTime;  // 플레이시간 변수
+
+        var canvas = document.getElementById("canvas"); //캔버스 불러오기
+        canvas.width = width; //캠버스범위지정
+        canvas.height = height;//캠버스 높이지정
+        canvas.style.border = "1px solid darkkhaki"; //캔버스 테두리
+        var ctx = canvas.getContext("2d"); //2d 
+        document.body.appendChild(canvas); // 불러오기
+        
+        //버튼 숨기기
+        var hidden = false;
+        
+        var player = {x: canvas.width/2 , y: canvas.height/2 , width: 25, height: 25, val:8}; // 나!
+
+        var enemyNum = 13;
+        var enemy  = new Array ();
+        var enemy1 = new Array ();
+        var enemy2 = new Array ();
+        var enemy3 = new Array ();
+        for(var i=0; i<enemyNum; i++) {
+            enemy [i] = {x: 0, y: 0, width: 20, height: 20, val:3};
+            enemy1[i] = {x: 0, y: 0, width: 20, height: 20, val:3};
+            enemy2[i] = {x: width , y: 0, width: 20, height: 20, val:3};
+            enemy3[i] = {x: 0, y: height, width: 20, height: 20, val:3};
+        }
+
+        // 카운트다운 숫자 표시
+        function drawCount(a) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = "50px fantasy"; //폰트의 크기, 글꼴체 지정      
+            ctx.fillStyle = "black"; //색상지정
+            ctx.fillText(a,canvas.width/2.5,canvas.height/2.5);
+        }
+
+        // 시작 버튼 누르면 카운트다운 후 게임 실행
+        //쉬움모드 규칙
+        function drawCountdown() {   
+          startTime = getTime();
+          for(var i = 0; i<enemyNum; i++) {
+            
+            enemy[i].y += enemy[i].val;
+            
+            
+            enemy1[i].x += enemy1[i].val;
+            
+           
+            enemy2[i].x += enemy2[i].val;
+            
+            
+            enemy3[i].y += enemy3[i].val;
+            
+      }
+            document.getElementById('btn').style.visibility = 'hidden';
+            document.getElementById('btn1').style.visibility = 'hidden';
+            setTimeout(function() {drawCount("3")},0);
+            setTimeout(function() {drawCount("2")},1000);
+            setTimeout(function() {drawCount("1")},2000);
+            setTimeout(function() {drawCount("시작")},3000);
+            setTimeout(function() {update()},4000); // 게임 실행 함수
+        }
+        //어려움모드
+        function drawCountdown1() {
+          startTime = getTime();
+          
+          document.getElementById('btn').style.visibility = 'hidden';  
+          document.getElementById('btn1').style.visibility = 'hidden';
+            setTimeout(function() {drawCount("3")},0);
+            setTimeout(function() {drawCount("2")},1000);
+            setTimeout(function() {drawCount("1")},2000);
+            setTimeout(function() {drawCount("시작")},3000);
+            setTimeout(function() {update()},4000); // 게임 실행 함수
+        }
+
+        // 시간
+        function getTime() {
+            var date = new Date();
+            var time = date.getTime();
+            delete date;
+            return time;
+        }
+
+
+        // enemy 위치 리셋
+        function reset() {
+            for(var i=0; i<enemyNum; i++) {
+                enemy[i].y = 0;
+                enemy1[i].x = 0;
+                enemy2[i].x = canvas.width;
+                enemy3[i].y = canvas.height;
+            }
+        }
+
+        // 게임 종료 조건
+        function stopGame(){
+            for(var i = 0; i<enemyNum; i++) { 
+                //위에서 나오는 친구들 
+                if(player.x >= enemy[i].x-range && player.x <= enemy[i].x+range && player.y >= enemy[i].y-range && player.y <= enemy[i].y+range){
+                    aaa();
+                }
+                // 왼쪽에서 나오는친구들
+                if(player.x >= enemy1[i].x-range && player.x <= enemy1[i].x+range && player.y >= enemy1[i].y-range && player.y <= enemy1[i].y+range ){
+                    aaa();
+                }
+                //오른쪽에서 나오는 친구들
+                if(player.x >= enemy2[i].x-range && player.x <= enemy2[i].x+range && player.y >= enemy2[i].y-range && player.y <= enemy2[i].y+range ){
+                    aaa();
+                }
+                //아래에서 나오는 친구들 
+                if(player.x >= enemy3[i].x-range && player.x <= enemy3[i].x+range && player.y >= enemy3[i].y-range && player.y <= enemy3[i].y+range ){
+                    aaa();
+                }               
+            } 
+        }
+
+        // 게임 종료
+        function aaa() {
+            reset();
+            alert("GameOver");
+            document.location.reload();
+        }
+        var map;
+        var lion;
+        
+            map = sessionStorage.getItem("0");
+            
+            lion = sessionStorage.getItem("1");
+            
+       
+        // 캔버스 그리기
+        function draw() {
+            ctx.save();
+
+            var inImage = new Image();
+            inImage.src = map+".png";
+            ctx.drawImage(inImage,0,0,2000,800);
+      
+            ctx.fillStyle = "red";
+            for(var i=0; i<enemyNum; i++) {
+                ctx.fillRect(enemy[i].x-enemy[i].width/2,enemy[i].y-enemy[i].height/2,enemy[i].width,enemy[i].height);
+                ctx.fillRect(enemy1[i].x-enemy1[i].width/2,enemy1[i].y-enemy1[i].height/2,enemy1[i].width,enemy1[i].height);
+                ctx.fillRect(enemy2[i].x-enemy2[i].width/2,enemy2[i].y-enemy2[i].height/2,enemy2[i].width,enemy2[i].height);
+                ctx.fillRect(enemy3[i].x-enemy3[i].width/2,enemy3[i].y-enemy3[i].height/2,enemy3[i].width,enemy3[i].height);
+            }
+        
+            player1 = new Image();
+            player1.src = lion+".png";
+            ctx.drawImage(player1,player.x-player.width/2,player.y-player.height/2,player.width,player.height);
+            
+
+           
+            ctx.font = "20px Arial";
+            ctx.fillStyle = "black";
+            
+            ctx.fillText("Time: "+parseInt((getTime() - startTime)/1000-4),0,20);
+
+            ctx.restore();
+        }
+
+        // enemy 움직이기
+        function moveEnemy() {
+            for(var i = 0; i<enemyNum; i++) { 
+                // 위에서 내려오는 친구들
+                if(enemy[i].y > height || enemy[i].y == 0){
+                    enemy[i].x = Math.ceil(Math.random()*width);
+                    enemy[i].y = 0; //초기화 값
+                    enemy[i].val = 4; 
+                }
+                //왼쪽에서 나오는 친구들
+                if(enemy1[i].x > width || enemy1[i].x == 0){
+                    enemy1[i].y = Math.ceil(Math.random()*height);
+                    enemy1[i].x = 0;
+                    enemy1[i].val = 4; 
+                }
+                //오른쪽에서 나오는 친구들 
+                if(enemy2[i].x < 0 || enemy2[i].x == width){
+                    enemy2[i].y = Math.ceil(Math.random()*height);
+                    enemy2[i].x = width;
+                    enemy2[i].val = -4; 
+                }
+                //아래에서 나오는 친구들
+                if(enemy3[i].y < 0 || enemy3[i].y == height){
+                    enemy3[i].x = Math.ceil(Math.random()*width);
+                    enemy3[i].y = height;
+                    enemy3[i].val = -4; 
+                }
+                //위에서 내려오는 친구들 속도 증가
+                enemy[i].y += enemy[i].val;
+                enemy[i].val += 0.09;
+                //왼쪽에서 나오는 친구들 속도 증가 
+                enemy1[i].x += enemy1[i].val;
+                enemy1[i].val += 0.09;
+                //오른쪽에서 나오는 친구들 속도 증가
+                enemy2[i].x += enemy2[i].val;
+                enemy2[i].val -= 0.09;
+                //아래에서 나오는 친구들 속도 증가 
+                enemy3[i].y += enemy3[i].val;
+                enemy3[i].val -= 0.09;
+            } //for문의 중괄호
+        }
+
+
+        // 전체 게임 실행 함수
+        function update(){ //동적 반응 
+            // 캔버스 그리기
+            draw();
+            //게임 종료 조건
+            stopGame();
+            // 적 움직이기
+            moveEnemy();
+        
+            // 방향키 움직임
+            
+            if((key[65]||key[37])&&player.x-player.width/2>0) player.x -= player.val;
+            if((key[87]||key[38])&&player.y-player.height/2>0) player.y -= player.val;
+            if((key[68]||key[39])&&player.x+player.width/2<width) player.x += player.val;
+            if((key[83]||key[40])&&player.y+player.height/2<height) player.y += player.val;
+
+            requestAnimationFrame(update);
+        }
+
+        // 키 누르기
+        window.addEventListener("keydown", function(e){
+            key[e.keyCode] = true;
+        });
+        window.addEventListener("keyup", function(e){
+            key[e.keyCode] = false;
+        });
+        
+    </Script>
+</body>
+</html>
