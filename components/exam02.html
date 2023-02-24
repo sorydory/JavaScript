@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        //컴포넌트 클래스 선언
+        class Component {
+            target;
+            state;
+            constructor(target){
+                this.target = target;
+                this.setup();
+                this.render();
+            }
+            //메소드 setup, render, template, setState, setEvent
+            //상태초기값 설정 - 자식 클래스
+            setup(){}
+            //UI리턴 - 자식 클래스
+            template(){
+                return '';
+            }
+            //이벤트지정 - 자식 클래스
+            setEvent(){}
+            //innertHTML로 target 나타내기
+            render(){
+                this.target.innerHTML = this.template();
+                this.setEvent();
+            }
+            //상태변화
+            setState(newState) {
+            this.state = { ...this.state, ...newState }
+            this.render();
+            }
+        }
+        //앱 클래스 선언
+        class App extends Component {
+            setup(){
+                this.state = { students : [ "stu1", "stu2", "stu3"]}
+            }
+            template(){
+                const { students } = this.state;
+                return `
+                <ul>
+                    ${students.map((st,index)=>`<li>${st}
+                        <button class='delbtn' data-index='${index}'>삭제</button></li>`).join("")}
+                </ul>
+                <button id="add">추가</button>
+                `
+            }
+            setEvent(){
+            this.target.querySelector("#add").addEventListener("click",()=>{
+                const { students } = this.state;
+                this.setState({ students: [...students, `stu${students.length+1}`]})
+                })
+            this.target.querySelectorAll('.delbtn').forEach(delbtn=>{
+                delbtn.addEventListener('click', (e)=>{
+                    const target = e.target;
+                    const { students } = this.state;
+                    students.splice(target.dataset.index,1);
+                    this.setState(students);
+                })
+            })
+            }
+        }
+        new App(document.querySelector("#app"));
+        
+    </script>
+</body>
+</html>
